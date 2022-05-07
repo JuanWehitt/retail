@@ -20,7 +20,9 @@ public class ProductoTest {
     public void testsetPrecioContado_ok() {
         Producto p = new Producto("0001","Televisor bb");
         p.setPrecioDeLista(15999.90);
-        assertTrue((p.getPrecioContado() - (p.getPrecioContado() * Producto.getDescuentoContado())) == p.getPrecioDeLista());
+        double precioContado = p.getPrecioContado();
+        precioContado = precioContado - Producto.getDescuentoContado();
+        assertTrue(Double.compare(precioContado,p.getPrecioDeLista())==0);
     }
     @Test
     public void testAgregarConfiguracion_ok() {
