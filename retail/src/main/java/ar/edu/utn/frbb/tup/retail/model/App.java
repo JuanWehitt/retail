@@ -1,4 +1,4 @@
-package ar.edu.utn.frbb.tup.retail;
+package ar.edu.utn.frbb.tup.retail.model;
 
 /**
  * Hello world!

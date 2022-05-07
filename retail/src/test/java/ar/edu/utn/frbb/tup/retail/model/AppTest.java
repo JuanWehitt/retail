@@ -1,4 +1,4 @@
-package ar.edu.utn.frbb.tup.retail;
+package ar.edu.utn.frbb.tup.retail.model;
 
 import static org.junit.Assert.assertTrue;
 
