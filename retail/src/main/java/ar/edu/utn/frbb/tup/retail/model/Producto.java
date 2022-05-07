@@ -3,7 +3,7 @@ package ar.edu.utn.frbb.tup.retail.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Producto implements Configurable {
+public class Producto implements Configurable, VendibleOnLine {
     private String codigo;
     private String nombre;
     private Categoria categoria;
@@ -14,11 +14,13 @@ public class Producto implements Configurable {
     private double precioDeLista;
     private double precioContado;
     private boolean on_line = false;
+    private double precioOnline;
     private static double descuentoOnline;
     private List<Producto> relacionados;
 
     private List<Configuracion> configuraciones;
     private static double descuentoContado = 0.15;
+
 
     public Producto(String codigo, String nombre) {
         this.codigo = codigo;
@@ -147,7 +149,11 @@ public class Producto implements Configurable {
             configuraciones = new ArrayList<>();
         }
         this.configuraciones.add(conf);
+        if (especificaciones == null) {
+            this.especificaciones = new ArrayList<>();
+        }
         this.especificaciones.add(conf.getNombre() + ":" + conf.getOpcionElegida());
+
     }
 
     @Override
@@ -160,5 +166,19 @@ public class Producto implements Configurable {
     @Override
     public void setearOpcionElegida(Configuracion configuracion, String opcion) {
         configuracion.setOpcionElegida(opcion);
+    }
+
+    @Override
+    public void aplicarPrecio(double precio) {
+        this.precioOnline = precio;
+    }
+
+    @Override
+    public double getPrecioOnline() {
+        if (this.on_line) {
+            return precioOnline;
+        }else{
+            return 0;
+        }
     }
 }
