@@ -21,6 +21,21 @@ public class Producto implements Configurable, VendibleOnLine {
     private List<Configuracion> configuraciones;
     private static double descuentoContado = 0.15;
 
+    public Producto (Producto aCopiar){
+        this.codigo = aCopiar.getCodigo();
+        this.nombre = aCopiar.getNombre();
+        this.categoria = new Categoria(aCopiar.getCategoria().getNombre());
+        this.marca = aCopiar.getMarca();
+        this.modelo = aCopiar.getModelo();
+        this.descripcion = aCopiar.getDescripcion();
+        this.especificaciones = aCopiar.getEspecificaciones().subList(0,aCopiar.getEspecificaciones().size()-1);
+        this.precioDeLista = aCopiar.getPrecioDeLista();
+        this.precioContado = aCopiar.getPrecioContado();
+        this.on_line = aCopiar.isOn_line();
+        this.precioOnline = aCopiar.getPrecioOnline();
+        this.relacionados = aCopiar.getRelacionados().subList(0,aCopiar.getRelacionados().size()-1);
+        this.configuraciones = aCopiar.getConfiguraciones().subList(0,aCopiar.getConfiguraciones().size()-1);
+    }
 
     public Producto(String codigo, String nombre) {
         this.codigo = codigo;
@@ -94,8 +109,8 @@ public class Producto implements Configurable, VendibleOnLine {
         return on_line;
     }
 
-    public void setOn_line(boolean on_line) {
-        this.on_line = on_line;
+    public void setOn_line(boolean valor) {
+        this.on_line = valor;
     }
 
     public List<Producto> getRelacionados() {
@@ -181,4 +196,6 @@ public class Producto implements Configurable, VendibleOnLine {
             return 0;
         }
     }
+
+
 }

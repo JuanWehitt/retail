@@ -64,7 +64,7 @@ public class Categoria {
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
             if (p.getMarca().compareTo(marca)==0){
-                productosFiltro.add(p);
+                productosFiltro.add(new Producto(p));
             }
         }
         return productosFiltro;
@@ -73,7 +73,7 @@ public class Categoria {
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
             if (Double.compare(p.getPrecioDeLista(),precio)==0){
-                productosFiltro.add(p);
+                productosFiltro.add(new Producto(p));
             }
         }
         return productosFiltro;

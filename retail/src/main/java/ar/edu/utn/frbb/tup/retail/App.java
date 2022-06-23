@@ -1,10 +1,11 @@
-package ar.edu.utn.frbb.tup.retail.model;
+package ar.edu.utn.frbb.tup.retail;
 
 /**
  * Hello world!
  *
  */
-public class App 
+
+public class App
 {
     public static void main( String[] args )
     {

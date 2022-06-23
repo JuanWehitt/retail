@@ -1,7 +1,9 @@
 ar\edu\utn\frbb\tup\retail\model\Configurable.class
+ar\edu\utn\frbb\tup\retail\model\Venta.class
 ar\edu\utn\frbb\tup\retail\model\Categoria.class
 ar\edu\utn\frbb\tup\retail\model\Configuracion.class
 ar\edu\utn\frbb\tup\retail\model\Categoria$1.class
+ar\edu\utn\frbb\tup\retail\model\VentaOnLine.class
 ar\edu\utn\frbb\tup\retail\model\VendibleOnLine.class
 ar\edu\utn\frbb\tup\retail\model\Producto.class
 ar\edu\utn\frbb\tup\retail\model\App.class
