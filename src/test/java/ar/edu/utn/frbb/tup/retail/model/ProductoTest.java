@@ -1,7 +1,6 @@
 package ar.edu.utn.frbb.tup.retail.model;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
