@@ -37,6 +37,9 @@ public class Producto implements Configurable, VendibleOnLine {
         this.configuraciones = aCopiar.getConfiguraciones().subList(0,aCopiar.getConfiguraciones().size()-1);
     }
 
+    public Producto(){
+
+    }
     public Producto(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
