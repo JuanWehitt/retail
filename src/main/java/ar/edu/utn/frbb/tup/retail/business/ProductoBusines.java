@@ -5,4 +5,5 @@ import ar.edu.utn.frbb.tup.retail.model.Producto;
 
 public interface ProductoBusines {
     Producto altaProducto(AltaProductoDto dto);
+    Producto getProducto(String codigo);
 }

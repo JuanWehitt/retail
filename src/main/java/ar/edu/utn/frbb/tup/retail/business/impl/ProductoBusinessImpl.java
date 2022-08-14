@@ -20,4 +20,8 @@ public class ProductoBusinessImpl implements ProductoBusines {
         productoDao.save(producto);
         return producto;
     }
+
+    public Producto getProducto(String codigo){
+        return productoDao.findProducto(codigo);
+    }
 }

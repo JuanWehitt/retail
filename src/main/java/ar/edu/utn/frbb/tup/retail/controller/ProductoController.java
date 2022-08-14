@@ -6,10 +6,7 @@ import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductoController {
@@ -22,8 +19,10 @@ public class ProductoController {
     public Producto crearProducto(@RequestBody AltaProductoDto dto){
         return productoBusines.altaProducto(dto);
     }
-    @GetMapping("/productos")
-    public String listarProductos(){
-        return "se mostraran los productos";
+    @GetMapping("/producto/{codigo}")
+    public Producto getProducto(@PathVariable String codigo){
+        System.out.println("se retorna el producto "+codigo);
+        return productoBusines.getProducto(codigo);
+
     }
 }
