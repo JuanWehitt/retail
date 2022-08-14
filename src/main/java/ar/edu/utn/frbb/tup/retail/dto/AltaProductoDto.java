@@ -8,6 +8,7 @@ public class AltaProductoDto {
     public AltaProductoDto(String nombre, String codigo) {
         this.nombre = nombre;
         this.codigo = codigo;
+        System.out.println("se creo AltaProductoDto con nombre "+nombre+" y codigo "+codigo);
     }
 
     public AltaProductoDto() {

@@ -1,5 +1,6 @@
 package ar.edu.utn.frbb.tup.retail.controller;
 
+import ar.edu.utn.frbb.tup.retail.business.CategoriaBusiness;
 import ar.edu.utn.frbb.tup.retail.business.ProductoBusines;
 import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
@@ -15,6 +16,7 @@ public class ProductoController {
 
     @Autowired
     ProductoBusines productoBusines;
+
 
     @PostMapping( value="/producto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Producto crearProducto(@RequestBody AltaProductoDto dto){
