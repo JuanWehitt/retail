@@ -187,7 +187,7 @@ public class Producto implements Configurable, VendibleOnLine {
     }
 
     @Override
-    public void aplicarPrecio(double precio) {
+    public void setPrecioOnLine(double precio) {
         this.precioOnline = precio;
     }
 
