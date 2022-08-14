@@ -2,10 +2,11 @@ package ar.edu.utn.frbb.tup.retail.persistence.dao.impl;
 
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class InMemoryCategoriaDao implements CategoriaDao {
     private List<Categoria> categoriasList = new ArrayList<>();
     @Override

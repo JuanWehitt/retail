@@ -10,6 +10,9 @@ public class AltaProductoDto {
         this.codigo = codigo;
     }
 
+    public AltaProductoDto() {
+    }
+
     public String getNombre() {
         return nombre;
     }

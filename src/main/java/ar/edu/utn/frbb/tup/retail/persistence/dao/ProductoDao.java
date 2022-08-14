@@ -5,7 +5,7 @@ import ar.edu.utn.frbb.tup.retail.model.Producto;
 public interface ProductoDao {
     void save(Producto producto);
 
-    Producto updateProductp(Producto producto);
+    Producto updateProducto(Producto producto);
 
     boolean deleteProducto(Producto producto);
 

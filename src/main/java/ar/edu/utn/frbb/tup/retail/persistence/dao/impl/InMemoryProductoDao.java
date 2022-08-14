@@ -2,11 +2,12 @@ package ar.edu.utn.frbb.tup.retail.persistence.dao.impl;
 
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.ProductoDao;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class InMemoryProductoDao implements ProductoDao {
     private List<Producto> productosList = new ArrayList<>();
 
@@ -16,7 +17,7 @@ public class InMemoryProductoDao implements ProductoDao {
     }
 
     @Override
-    public Producto updateProductp(Producto producto) {
+    public Producto updateProducto(Producto producto) {
         return null;
     }
 
