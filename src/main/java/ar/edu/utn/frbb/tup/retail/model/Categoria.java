@@ -6,12 +6,16 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Categoria {
-
     private String nombre;
     private ArrayList<Producto> productos;
 
+
     public Categoria(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Categoria() {
+
     }
 
     public String getNombre() {
@@ -64,7 +68,7 @@ public class Categoria {
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
             if (p.getMarca().compareTo(marca)==0){
-                productosFiltro.add(new Producto(p));
+                productosFiltro.add(p);
             }
         }
         return productosFiltro;
@@ -73,7 +77,7 @@ public class Categoria {
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
             if (Double.compare(p.getPrecioDeLista(),precio)==0){
-                productosFiltro.add(new Producto(p));
+                productosFiltro.add(p);
             }
         }
         return productosFiltro;

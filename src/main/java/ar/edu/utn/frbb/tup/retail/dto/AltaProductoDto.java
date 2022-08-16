@@ -1,4 +1,31 @@
 package ar.edu.utn.frbb.tup.retail.dto;
 
 public class AltaProductoDto {
+
+    private String nombre;
+    private String codigo;
+
+    public AltaProductoDto(String nombre, String codigo) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        System.out.println("se creo AltaProductoDto con nombre "+nombre+" y codigo "+codigo);
+    }
+
+    public AltaProductoDto() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }
