@@ -74,7 +74,7 @@ public class ProductoController {
 
     @PutMapping( value = "/producto/{codigo}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Producto updateProducto(@PathVariable String codigo, @RequestBody UpdateProductoDto dto){
-        if(categoriaBusiness.getCategoria(dto.getCategoria())== null){
+        if(categoriaBusiness.getCategoria(dto.getCategoria()) == null){
             AltaCategoriaDto dtoAltaCategoria = new AltaCategoriaDto(dto.getCategoria());
             categoriaBusiness.altaCategoria(dtoAltaCategoria);
         }
@@ -82,11 +82,8 @@ public class ProductoController {
         if (productoActualizado==null){
             throw new ExceptionBean("Producto "+codigo+ " no encontrado");
         }
-        if(productoActualizado!=null){
-            return productoActualizado;
-        }else{
-            return new Producto();
-        }
+        return productoActualizado;
+
     }
     @DeleteMapping("/producto/{codigo}")
     public String deleteProducto(@PathVariable String codigo){

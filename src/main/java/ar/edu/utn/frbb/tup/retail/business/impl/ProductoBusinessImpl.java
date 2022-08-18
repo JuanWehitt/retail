@@ -49,11 +49,21 @@ public class ProductoBusinessImpl implements ProductoBusiness {
             producto.setModelo(dto.getModelo());
             producto.setPrecioDeLista(dto.getPrecioDeLista());
             Categoria categoria = categoriaDao.findCategoria(dto.getCategoria());
+
+            if(producto.getCategoria()!=null && !producto.getCategoria().getNombre().equalsIgnoreCase(dto.getCategoria())){
+                Categoria categoriaActual = categoriaDao.findCategoria(producto.getCategoria().getNombre());
+                categoriaActual.eliminarProducto(producto);
+            }
+            if(!categoria.isInCategoria(producto.getCodigo())) {
+                categoria.agregarProducto(producto);
+            }
+            categoriaDao.updateCategoria(categoria);
             producto.setCategoria(categoria);
             producto.setEspecificaciones(dto.getEspecificaciones());
             producto.setOn_line(dto.isOn_line());
             producto.setPrecioOnLine(dto.getPrecioOnline());
             producto.setTipo(dto.getTipo());
+            productoDao.updateProducto(producto);
         }
         return producto;
     }

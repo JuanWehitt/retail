@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Categoria {
     private String nombre;
+    private String descripcion;
     private ArrayList<Producto> productos;
 
 
@@ -15,14 +16,22 @@ public class Categoria {
     }
 
     public Categoria() {
-
     }
 
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void agregarProducto(Producto p){
@@ -31,11 +40,13 @@ public class Categoria {
         }
         productos.add(p);
     }
+
     public void eliminarProducto(Producto p){
         if (productos != null){
             productos.remove(p);
         }
     }
+
     private boolean ordenada(List<Producto> p){
         boolean or = true;
         int i = 0;
@@ -49,6 +60,7 @@ public class Categoria {
         }
         return or;
     }
+
     public ArrayList<Producto> ordenadosPorPrecio(String modo){
         Collections.sort(this.productos, new Comparator<Producto>() {
             @Override
@@ -64,6 +76,7 @@ public class Categoria {
         }
 
     }
+
     public ArrayList<Producto> filtroPorMarca(String marca){
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
@@ -73,6 +86,7 @@ public class Categoria {
         }
         return productosFiltro;
     }
+
     public ArrayList<Producto> filtroPorPrecio(double precio){
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
@@ -81,6 +95,16 @@ public class Categoria {
             }
         }
         return productosFiltro;
+    }
+
+    public boolean isInCategoria(String codigo){
+        boolean esta = false;
+        for(Producto p: productos){
+            if (codigo==p.getCodigo()){
+                esta = true;
+            }
+        }
+        return esta;
     }
 
 }

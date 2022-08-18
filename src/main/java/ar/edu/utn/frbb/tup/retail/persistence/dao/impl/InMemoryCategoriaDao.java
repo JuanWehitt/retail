@@ -36,4 +36,9 @@ public class InMemoryCategoriaDao implements CategoriaDao {
         }
         return encontrada;
     }
+
+    @Override
+    public List<Categoria> findAll() {
+        return categoriasList;
+    }
 }

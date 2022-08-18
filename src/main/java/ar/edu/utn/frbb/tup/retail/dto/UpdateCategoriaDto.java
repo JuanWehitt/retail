@@ -1,6 +1,7 @@
 package ar.edu.utn.frbb.tup.retail.dto;
 
-public class AltaCategoriaDto {
+public class UpdateCategoriaDto {
+
     private String nombre;
     private String descripcion;
 
@@ -18,13 +19,5 @@ public class AltaCategoriaDto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public AltaCategoriaDto(String nombre) {
-        this.nombre = nombre;
-        System.out.println("se creo AltaCategoriaDto con nombre "+nombre);
-    }
-    public AltaCategoriaDto(){
-
     }
 }

@@ -2,6 +2,8 @@ package ar.edu.utn.frbb.tup.retail.persistence.dao;
 
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
 
+import java.util.List;
+
 public interface CategoriaDao {
     void save(Categoria categoria);
 
@@ -10,4 +12,6 @@ public interface CategoriaDao {
     boolean deleteCategoria(Categoria categoria);
 
     Categoria findCategoria(String nombre);
+
+    List<Categoria> findAll();
 }
