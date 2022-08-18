@@ -2,6 +2,9 @@ package ar.edu.utn.frbb.tup.retail.persistence.dao;
 
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface ProductoDao {
     void save(Producto producto);
 
@@ -11,4 +14,5 @@ public interface ProductoDao {
 
     Producto findProducto(String cuit);
 
+    ArrayList<Producto> findAll();
 }

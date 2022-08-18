@@ -17,6 +17,7 @@ public class Producto implements Configurable, VendibleOnLine {
     private double precioOnline;
     private static double descuentoOnline;
     private List<Producto> relacionados;
+    private String tipo;
 
     private List<Configuracion> configuraciones;
     private static double descuentoContado = 0.15;
@@ -35,6 +36,7 @@ public class Producto implements Configurable, VendibleOnLine {
         this.precioOnline = aCopiar.getPrecioOnline();
         this.relacionados = aCopiar.getRelacionados().subList(0,aCopiar.getRelacionados().size()-1);
         this.configuraciones = aCopiar.getConfiguraciones().subList(0,aCopiar.getConfiguraciones().size()-1);
+        this.tipo = aCopiar.getTipo();
     }
 
     public Producto(){
@@ -43,6 +45,14 @@ public class Producto implements Configurable, VendibleOnLine {
     public Producto(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getCodigo() {

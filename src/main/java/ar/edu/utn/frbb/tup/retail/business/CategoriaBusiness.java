@@ -5,4 +5,6 @@ import ar.edu.utn.frbb.tup.retail.model.Categoria;
 
 public interface CategoriaBusiness {
     Categoria altaCategoria(AltaCategoriaDto dto);
+
+    Categoria getCategoria(String nombre);
 }

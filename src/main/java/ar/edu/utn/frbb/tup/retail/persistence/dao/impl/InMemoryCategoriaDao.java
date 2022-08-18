@@ -31,7 +31,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
         for (Categoria c: categoriasList){
             if(c.getNombre().equals(nombre)){
                 encontrada = c;
-                System.out.println("Encontro producto con "+nombre);
+                System.out.println("Encontro categoria con "+nombre);
             }
         }
         return encontrada;

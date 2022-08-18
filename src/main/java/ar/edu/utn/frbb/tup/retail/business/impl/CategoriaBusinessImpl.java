@@ -21,4 +21,9 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
         categoriaDao.save(categoria);
         return categoria;
     }
+
+    @Override
+    public Categoria getCategoria(String nombre) {
+        return categoriaDao.findCategoria(nombre);
+    }
 }

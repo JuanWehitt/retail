@@ -7,9 +7,8 @@ import ar.edu.utn.frbb.tup.retail.model.Producto;
 import java.util.List;
 
 public class UpdateProductoDto {
-    private String codigo;
     private String nombre;
-    private Categoria categoria;
+    private String categoria;
     private String marca;
     private String modelo;
     private String descripcion;
@@ -18,14 +17,15 @@ public class UpdateProductoDto {
     private double precioContado;
     private boolean on_line;
     private double precioOnline;
-    private List<Configuracion> configuraciones;
+    private List<String> configuraciones;
+    private String tipo;
 
-    public String getCodigo() {
-        return codigo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -36,11 +36,11 @@ public class UpdateProductoDto {
         this.nombre = nombre;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
@@ -108,11 +108,11 @@ public class UpdateProductoDto {
         this.precioOnline = precioOnline;
     }
 
-    public List<Configuracion> getConfiguraciones() {
+    public List<String> getConfiguraciones() {
         return configuraciones;
     }
 
-    public void setConfiguraciones(List<Configuracion> configuraciones) {
+    public void setConfiguraciones(List<String> configuraciones) {
         this.configuraciones = configuraciones;
     }
 }

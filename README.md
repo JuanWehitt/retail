@@ -89,3 +89,31 @@ Los productos deben proveer operaciones para:
     ● Consultar la lista de opciones de configuración de un producto
 
     ● Consultar las especificaciones de un producto.
+
+ACTUALIZACION DE AGOSTO
+
+Crear endpoints REST para las siguientes operaciones. Debajo se indica cómo
+deben quedar los endpoints y a qué tipo de método HTTP deben responder y un ejemplo
+del mismo en algunos casos.
+
+Categorías:
+● Crear, Modificar y Eliminar una nueva categoría
+POST: /categoria
+PUT: /categoria/{identificador}
+DELETE: /categoria/{identificador}
+● Obtener todos los productos ordenados por precio (ascendente o descendente)
+GET: /categoria?oder_price=asc (u order_price=desc)
+● Obtener los productos filtrando por marca
+GET: /categoria?marca=samsung
+● Obtener productos filtrando por precio
+GET: /categoria?precio_min=35000&precio_max=6000
+Productos:
+● Crear, Modificar y Eliminar un producto.
+POST: /producto
+PUT: /producto/{identificador}
+DELETE: /producto/{identificador}
+● Consultar un producto por su identificador
+GET: /producto/{identificador}
+● Consultar un producto por alguno de sus atributos: tipo, marca, categoria
+GET: /producto?tipo_producto=dvd&marca=samsung&cateogoria=ATV
+GET: /producto?tipo_producto=tv&marca=phillips&categoria=ATV

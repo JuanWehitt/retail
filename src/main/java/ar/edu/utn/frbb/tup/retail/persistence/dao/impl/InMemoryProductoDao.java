@@ -1,16 +1,18 @@
 package ar.edu.utn.frbb.tup.retail.persistence.dao.impl;
 
+import ar.edu.utn.frbb.tup.retail.exception.ExceptionBean;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.ProductoDao;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Component
 public class InMemoryProductoDao implements ProductoDao {
-    private List<Producto> productosList = new ArrayList<>();
+    private ArrayList<Producto> productosList = new ArrayList<>();
 
     @Override
     public void save(Producto producto) {
@@ -38,6 +40,11 @@ public class InMemoryProductoDao implements ProductoDao {
             }
         }
         return encontrado;
+    }
+
+    @Override
+    public ArrayList<Producto> findAll() {
+        return productosList;
     }
 
 

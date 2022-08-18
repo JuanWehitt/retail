@@ -18,4 +18,6 @@ public class CategoriaController {
     public Categoria crearCategoria(@RequestBody AltaCategoriaDto dto) {
         return categoriaBusiness.altaCategoria(dto);
     }
+
+
 }
