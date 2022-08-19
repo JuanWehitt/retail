@@ -106,7 +106,7 @@ public class ProductoController {
             //System.out.println("Comparando "+producto.toString());
             if(producto.getTipo().equalsIgnoreCase(tipo) &&
                 producto.getMarca().equalsIgnoreCase(marca) &&
-                producto.getCategoria().getNombre().equalsIgnoreCase(categoria)){
+                producto.getCategoria().equalsIgnoreCase(categoria)){
                 listaFiltrada.add(producto);
                 //System.out.println("Encontro y almaceno "+producto.toString());
             }

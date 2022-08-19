@@ -17,4 +17,5 @@ public interface ProductoBusiness {
     ArrayList<Producto> getProductos();
 
     boolean deleteProducto(Producto producto);
+
 }

@@ -50,15 +50,18 @@ public class ProductoBusinessImpl implements ProductoBusiness {
             producto.setPrecioDeLista(dto.getPrecioDeLista());
             Categoria categoria = categoriaDao.findCategoria(dto.getCategoria());
 
-            if(producto.getCategoria()!=null && !producto.getCategoria().getNombre().equalsIgnoreCase(dto.getCategoria())){
-                Categoria categoriaActual = categoriaDao.findCategoria(producto.getCategoria().getNombre());
+            if(producto.getCategoria()!=null && !producto.getCategoria().equalsIgnoreCase(dto.getCategoria())){
+                Categoria categoriaActual = categoriaDao.findCategoria(producto.getCategoria());
                 categoriaActual.eliminarProducto(producto);
             }
-            if(!categoria.isInCategoria(producto.getCodigo())) {
+            if(categoria!= null && !categoria.isInCategoria(producto.getCodigo())) {
                 categoria.agregarProducto(producto);
+            }else if (categoria==null){
+                categoria = new Categoria(dto.getCategoria());
+                categoriaDao.save(categoria);
             }
             categoriaDao.updateCategoria(categoria);
-            producto.setCategoria(categoria);
+            producto.setCategoria(categoria.getNombre());
             producto.setEspecificaciones(dto.getEspecificaciones());
             producto.setOn_line(dto.isOn_line());
             producto.setPrecioOnLine(dto.getPrecioOnline());
@@ -77,4 +80,5 @@ public class ProductoBusinessImpl implements ProductoBusiness {
     public boolean deleteProducto(Producto producto) {
         return productoDao.deleteProducto(producto);
     }
+
 }

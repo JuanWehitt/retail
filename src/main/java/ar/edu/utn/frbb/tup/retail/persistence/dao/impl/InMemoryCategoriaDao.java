@@ -22,14 +22,18 @@ public class InMemoryCategoriaDao implements CategoriaDao {
 
     @Override
     public boolean deleteCategoria(Categoria categoria) {
-        return categoriasList.remove(categoria);
+        if (categoriasList.get(categoriasList.indexOf(categoria)).getProductos().size()!=0){
+            return false;
+        }else {
+            return categoriasList.remove(categoria);
+        }
     }
 
     @Override
     public Categoria findCategoria(String nombre) {
         Categoria encontrada = null;
         for (Categoria c: categoriasList){
-            if(c.getNombre().equals(nombre)){
+            if(c.getNombre().equalsIgnoreCase(nombre)){
                 encontrada = c;
                 System.out.println("Encontro categoria con "+nombre);
             }

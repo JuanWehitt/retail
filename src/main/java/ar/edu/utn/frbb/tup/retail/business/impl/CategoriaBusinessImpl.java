@@ -2,7 +2,7 @@ package ar.edu.utn.frbb.tup.retail.business.impl;
 
 import ar.edu.utn.frbb.tup.retail.business.CategoriaBusiness;
 import ar.edu.utn.frbb.tup.retail.dto.AltaCategoriaDto;
-import ar.edu.utn.frbb.tup.retail.dto.UpdateProductoDto;
+import ar.edu.utn.frbb.tup.retail.dto.UpdateCategoriaDto;
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,15 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
 
     @Override
     public Categoria altaCategoria(AltaCategoriaDto dto) {
-        Categoria categoria = new Categoria();
-        categoria.setNombre(dto.getNombre());
-        categoria.setDescripcion(dto.getDescripcion());
-        categoriaDao.save(categoria);
+        Categoria categoria;
+        if (categoriaDao.findCategoria(dto.getNombre())==null) {
+            categoria = new Categoria();
+            categoria.setNombre(dto.getNombre());
+            categoria.setDescripcion(dto.getDescripcion());
+            categoriaDao.save(categoria);
+        }else{
+            categoria = categoriaDao.findCategoria(dto.getNombre());
+        }
         return categoria;
     }
 
@@ -37,11 +42,16 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
     }
 
     @Override
-    public Categoria updateCategoria(UpdateProductoDto dto, String nombre) {
+    public Categoria updateCategoria(UpdateCategoriaDto dto, String nombre) {
         Categoria categoria = categoriaDao.findCategoria(nombre);
         categoria.setDescripcion(dto.getDescripcion());
         categoria.setNombre(dto.getNombre());
         categoriaDao.updateCategoria(categoria);
         return categoria;
+    }
+
+    @Override
+    public boolean deleteCategoria(String nombre) {
+        return categoriaDao.deleteCategoria(categoriaDao.findCategoria(nombre));
     }
 }

@@ -10,6 +10,9 @@ public class Categoria {
     private String descripcion;
     private ArrayList<Producto> productos;
 
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
 
     public Categoria(String nombre) {
         this.nombre = nombre;
@@ -61,50 +64,20 @@ public class Categoria {
         return or;
     }
 
-    public ArrayList<Producto> ordenadosPorPrecio(String modo){
-        Collections.sort(this.productos, new Comparator<Producto>() {
-            @Override
-            public int compare(Producto o1, Producto o2) {
-                return Double.compare(o1.getPrecioDeLista(),o2.getPrecioDeLista());
-            }
-        });
-        if (modo.toLowerCase().charAt(0)=='a'){
-            return this.productos;
-        }else{
-            Collections.reverse(productos);
-            return productos;
-        }
 
-    }
-
-    public ArrayList<Producto> filtroPorMarca(String marca){
-        ArrayList<Producto> productosFiltro = new ArrayList<>();
-        for(Producto p: productos){
-            if (p.getMarca().compareTo(marca)==0){
-                productosFiltro.add(p);
-            }
-        }
-        return productosFiltro;
-    }
-
-    public ArrayList<Producto> filtroPorPrecio(double precio){
-        ArrayList<Producto> productosFiltro = new ArrayList<>();
-        for(Producto p: productos){
-            if (Double.compare(p.getPrecioDeLista(),precio)==0){
-                productosFiltro.add(p);
-            }
-        }
-        return productosFiltro;
-    }
 
     public boolean isInCategoria(String codigo){
-        boolean esta = false;
-        for(Producto p: productos){
-            if (codigo==p.getCodigo()){
-                esta = true;
+        if (productos==null){
+            return false;
+        }else {
+            for (Producto p : productos) {
+                if (codigo.equals(p.getCodigo())) {
+                    return true;
+                }
             }
+            return false;
         }
-        return esta;
+
     }
 
 }

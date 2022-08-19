@@ -6,7 +6,7 @@ import java.util.List;
 public class Producto implements Configurable, VendibleOnLine {
     private String codigo;
     private String nombre;
-    private Categoria categoria;
+    private String categoria;
     private String marca;
     private String modelo;
     private String descripcion;
@@ -25,7 +25,7 @@ public class Producto implements Configurable, VendibleOnLine {
     public Producto (Producto aCopiar){
         this.codigo = aCopiar.getCodigo();
         this.nombre = aCopiar.getNombre();
-        this.categoria = new Categoria(aCopiar.getCategoria().getNombre());
+        this.categoria = aCopiar.getCategoria();
         this.marca = aCopiar.getMarca();
         this.modelo = aCopiar.getModelo();
         this.descripcion = aCopiar.getDescripcion();
@@ -71,11 +71,11 @@ public class Producto implements Configurable, VendibleOnLine {
         this.nombre = nombre;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
