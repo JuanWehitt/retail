@@ -81,24 +81,38 @@ public class CategoriaController {
     }
 
     @GetMapping("/categoria")
-    public ArrayList<Producto> getProductosOrder_price(@RequestParam("categoria") String categoria,
+    public ArrayList<Producto> getProductosOrder_price(@RequestParam(required = false, value = "categoria") String categoria,
                                                     @RequestParam(required = false, value = "order_price") String order_price,
                                                     @RequestParam(required = false, value = "marca") String marca,
                                                    @RequestParam(required = false, value = "precio_min") String precio_min,
                                                    @RequestParam(required = false, value = "precio_max") String precio_max) {
         Categoria c = categoriaBusiness.getCategoria(categoria);
         if (c == null) {
-            throw new NoSuchElementException("No se encontro la categoria");
-        }
-        if (order_price != null) {
-            return ordenadosPorPrecio(c, order_price);
-        } else if (marca != null) {
-            return filtroPorMarca(c, marca);
-        } else {
-            if (precio_min != null && precio_max != null) {
-                return filtroPorPrecio(c, Double.parseDouble(precio_min), Double.parseDouble(precio_max));
+            List<Categoria> categorias = categoriaBusiness.getCategorias();
+            Categoria todos = new Categoria();
+            categorias.forEach(cat -> cat.getProductos().forEach(p -> todos.agregarProducto(p)));
+            if (order_price != null) {
+                return ordenadosPorPrecio(todos, order_price);
+            } else if (marca != null) {
+                return filtroPorMarca(todos,marca);
+            } else {
+                if (precio_min != null && precio_max != null) {
+                    return filtroPorPrecio(todos, Double.parseDouble(precio_min), Double.parseDouble(precio_max));
+                }else{
+                    throw new InvalidRequestStateException("Error en los datos de entrada");
+                }
             }
-            throw new InvalidRequestStateException("Error en los datos de entrada");
+        }else{
+            if (order_price != null) {
+                return ordenadosPorPrecio(c, order_price);
+            } else if (marca != null) {
+                return filtroPorMarca(c, marca);
+            } else {
+                if (precio_min != null && precio_max != null) {
+                    return filtroPorPrecio(c, Double.parseDouble(precio_min), Double.parseDouble(precio_max));
+                }
+                throw new InvalidRequestStateException("Error en los datos de entrada");
+            }
         }
     }
 
@@ -129,7 +143,7 @@ public class CategoriaController {
         }
         ArrayList<Producto> productosFiltro = new ArrayList<>();
         for(Producto p: productos){
-            if (p.getMarca().compareTo(marca)==0){
+            if (p.getMarca().compareToIgnoreCase(marca)==0){
                 productosFiltro.add(p);
             }
         }

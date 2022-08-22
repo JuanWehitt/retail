@@ -7,6 +7,8 @@ import ar.edu.utn.frbb.tup.retail.business.impl.ProductoBusinessImpl;
 import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateProductoDto;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
+import ar.edu.utn.frbb.tup.retail.persistence.dao.ProductoDao;
+import ar.edu.utn.frbb.tup.retail.persistence.dao.impl.InMemoryProductoDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,11 @@ public class ApplicationConfig {
     @Bean
     public ProductoBusiness productoBusiness(){
         return new ProductoBusinessImpl();
+    }
+
+    @Bean
+    public ProductoDao productoDao(){
+        return new InMemoryProductoDao();
     }
 
 }
