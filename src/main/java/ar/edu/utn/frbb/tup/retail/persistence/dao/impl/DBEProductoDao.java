@@ -9,8 +9,8 @@ import java.util.ArrayList;
 @Component
 public class DBEProductoDao implements ProductoDao{
 
-    public void save(Producto producto) {
-
+    public Producto save(Producto producto) {
+        return producto;
     }
 
 

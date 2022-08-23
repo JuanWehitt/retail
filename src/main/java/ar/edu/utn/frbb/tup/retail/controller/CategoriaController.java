@@ -66,16 +66,20 @@ public class CategoriaController {
         if (categoria==null){
             throw new ExceptionBean("Categoria con nombre  "+nombre+ " no encontrada");
         }
+        try {
+            if (categoriaBusiness.deleteCategoria(nombre)) {
+                return "La categoria se elimino con exito";
+            }else{
+                return "NO se elimino la categoria por un problema interno";
+            }
+        }catch (ExceptionCategoriaRelacionada e){
 
-        if (categoriaBusiness.deleteCategoria(nombre)){
-            return "La categoria se elimino con exito";
-        }else{
             List<Producto> listaProductos = categoriaBusiness.getCategoria(nombre).getProductos();
             List<String> listaCodigos = new ArrayList<>();
             for (Producto p: listaProductos){
                 listaCodigos.add(p.getCodigo());
             }
-            throw  new ExceptionCategoriaRelacionada("La categoria contiene productos relacionados que debe modificar." +
+            throw  new ExceptionCategoriaRelacionada("La categoria contiene productos relacionados que debe modificar. " +
                     "Los productos con codigo: "+ listaCodigos);
         }
     }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductoDao {
-    void save(Producto producto);
+    Producto save(Producto producto);
 
     Producto updateProducto(Producto producto);
 

@@ -3,6 +3,7 @@ package ar.edu.utn.frbb.tup.retail.business.impl;
 import ar.edu.utn.frbb.tup.retail.business.CategoriaBusiness;
 import ar.edu.utn.frbb.tup.retail.dto.AltaCategoriaDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateCategoriaDto;
+import ar.edu.utn.frbb.tup.retail.exception.ExceptionCategoriaRelacionada;
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
     }
 
     @Override
-    public boolean deleteCategoria(String nombre) {
+    public boolean deleteCategoria(String nombre) throws ExceptionCategoriaRelacionada {
         return categoriaDao.deleteCategoria(categoriaDao.findCategoria(nombre));
     }
 }

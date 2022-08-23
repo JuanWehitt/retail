@@ -1,5 +1,6 @@
 package ar.edu.utn.frbb.tup.retail.persistence.dao.impl;
 
+import ar.edu.utn.frbb.tup.retail.exception.ExceptionCategoriaRelacionada;
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
@@ -11,19 +12,20 @@ import java.util.List;
 public class InMemoryCategoriaDao implements CategoriaDao {
     private List<Categoria> categoriasList = new ArrayList<>();
     @Override
-    public void save(Categoria categoria) {
+    public Categoria save(Categoria categoria) {
         categoriasList.add(categoria);
+        return categoria;
     }
 
     @Override
     public Categoria updateCategoria(Categoria categoria) {
-        return null;
+        return categoria;
     }
 
     @Override
-    public boolean deleteCategoria(Categoria categoria) {
+    public boolean deleteCategoria(Categoria categoria) throws ExceptionCategoriaRelacionada{
         if (categoriasList.get(categoriasList.indexOf(categoria)).getProductos().size()!=0){
-            return false;
+            throw new ExceptionCategoriaRelacionada("La categoria contiene productos asociados");
         }else {
             return categoriasList.remove(categoria);
         }

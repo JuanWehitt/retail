@@ -15,9 +15,10 @@ public class InMemoryProductoDao implements ProductoDao {
     private ArrayList<Producto> productosList = new ArrayList<>();
 
     @Override
-    public void save(Producto producto) {
+    public Producto save(Producto producto) {
         productosList.add(producto);
         System.out.println("se almaceno en memoria un producto "+producto.getCodigo());
+        return producto;
     }
 
     @Override

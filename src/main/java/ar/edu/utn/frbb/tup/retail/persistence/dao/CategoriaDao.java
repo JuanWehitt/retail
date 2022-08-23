@@ -5,7 +5,7 @@ import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import java.util.List;
 
 public interface CategoriaDao {
-    void save(Categoria categoria);
+    Categoria save(Categoria categoria);
 
     Categoria updateCategoria(Categoria categoria);
 
