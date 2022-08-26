@@ -32,4 +32,9 @@ public class DBEProductoDao implements ProductoDao{
     public ArrayList<Producto> findAll() {
         return null;
     }
+
+    @Override
+    public boolean relationProduct(String cod_producto1, String cod_producto2) {
+        return true;
+    }
 }

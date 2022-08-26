@@ -47,6 +47,25 @@ public class ProductoController {
         }
         return producto;
     }
+
+    @PutMapping("/producto/relacionar")
+    public List<Producto> relacionarProductos(@RequestParam(value = "cod_producto1", required = true) String cod_producto1,
+                                              @RequestParam(value = "cod_producto2", required = true) String cod_producto2){
+        Producto producto1 = null;
+        Producto producto2 = null;
+        producto1 = productoBusiness.getProducto(cod_producto1);
+        producto2 = productoBusiness.getProducto(cod_producto2);
+        if (producto1 != null && producto2 != null){
+            productoBusiness.relacionarProductos(cod_producto1,cod_producto2);
+            List<Producto> listaSalida = new ArrayList<>(2);
+            listaSalida.add(producto1);
+            listaSalida.add(producto2);
+            return listaSalida;
+        }else{
+            throw new ExceptionBean("Uno de los productos no se encontró, revise los codigos "+cod_producto1+" y "+cod_producto2);
+        }
+
+    }
     @GetMapping("/producto/por_tipo_marca_categoria")
     public List<Producto> listarPorTipoMarcaCategoria(@RequestParam("tipo_producto") String tipo,
                                                        @RequestParam("marca") String marca,
@@ -83,8 +102,8 @@ public class ProductoController {
             throw new ExceptionBean("Producto "+codigo+ " no encontrado");
         }
         return productoActualizado;
-
     }
+
     @DeleteMapping("/producto/{codigo}")
     public String deleteProducto(@PathVariable String codigo){
         Producto producto;

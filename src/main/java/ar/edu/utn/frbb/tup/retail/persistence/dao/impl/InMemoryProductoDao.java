@@ -48,5 +48,18 @@ public class InMemoryProductoDao implements ProductoDao {
         return productosList;
     }
 
+    @Override
+    public boolean relationProduct(String cod_producto1, String cod_producto2) {
+        Producto p1 = findProducto(cod_producto1);
+        Producto p2 = findProducto(cod_producto2);
+        if( p1!= null && p2 != null){
+            p1.agregarRelacionado(p2.getCodigo());
+            p2.agregarRelacionado(p1.getCodigo());
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }

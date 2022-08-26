@@ -15,4 +15,6 @@ public interface ProductoDao {
     Producto findProducto(String cuit);
 
     ArrayList<Producto> findAll();
+
+    boolean relationProduct(String cod_producto1, String cod_producto2);
 }

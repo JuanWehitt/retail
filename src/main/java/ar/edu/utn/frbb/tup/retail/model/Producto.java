@@ -16,7 +16,7 @@ public class Producto implements Configurable, VendibleOnLine {
     private boolean on_line = false;
     private double precioOnline;
     private static double descuentoOnline;
-    private List<Producto> relacionados;
+    private List<String> relacionados;
     private String tipo;
 
     private List<Configuracion> configuraciones;
@@ -103,8 +103,6 @@ public class Producto implements Configurable, VendibleOnLine {
         this.descripcion = descripcion;
     }
 
-
-
     public double getPrecioDeLista() {
         return precioDeLista;
     }
@@ -126,15 +124,18 @@ public class Producto implements Configurable, VendibleOnLine {
         this.on_line = valor;
     }
 
-    public List<Producto> getRelacionados() {
+    public List<String> getRelacionados() {
         return relacionados;
     }
 
-    public void agregarRelacionado(Producto rel){
+    public void agregarRelacionado(String cod_rel){
         if(relacionados==null){
             relacionados = new ArrayList<>();
+            relacionados.add(cod_rel);
         }
-        relacionados.add(rel);
+        if(!relacionados.contains(cod_rel)){
+            relacionados.add(cod_rel);
+        }
     }
 
     public static double getDescuentoContado() {

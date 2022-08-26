@@ -3,8 +3,8 @@ package ar.edu.utn.frbb.tup.retail.business.impl;
 import ar.edu.utn.frbb.tup.retail.business.ProductoBusiness;
 import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateProductoDto;
-import ar.edu.utn.frbb.tup.retail.exception.ExceptionBean;
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
+import ar.edu.utn.frbb.tup.retail.model.Configuracion;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.ProductoDao;
@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @Component
 public class ProductoBusinessImpl implements ProductoBusiness {
@@ -66,6 +64,7 @@ public class ProductoBusinessImpl implements ProductoBusiness {
             producto.setOn_line(dto.isOn_line());
             producto.setPrecioOnLine(dto.getPrecioOnline());
             producto.setTipo(dto.getTipo());
+            dto.getConfiguraciones().forEach(conf -> producto.agregarConfiguracion(new Configuracion(conf)));
             productoDao.updateProducto(producto);
         }
         return producto;
@@ -79,6 +78,11 @@ public class ProductoBusinessImpl implements ProductoBusiness {
     @Override
     public boolean deleteProducto(Producto producto) {
         return productoDao.deleteProducto(producto);
+    }
+
+    @Override
+    public void relacionarProductos(String cod_producto1, String cod_producto2) {
+        productoDao.relationProduct(cod_producto1, cod_producto2);
     }
 
 }
