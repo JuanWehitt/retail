@@ -8,9 +8,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+
 @Component
 public class InMemoryCategoriaDao implements CategoriaDao {
     private List<Categoria> categoriasList = new ArrayList<>();
+
     @Override
     public Categoria save(Categoria categoria) {
         categoriasList.add(categoria);
@@ -46,5 +49,15 @@ public class InMemoryCategoriaDao implements CategoriaDao {
     @Override
     public List<Categoria> findAll() {
         return categoriasList;
+    }
+
+    @Override
+    public Categoria findCategoriaPorTipo(String tipo) {
+        for( Categoria cat : categoriasList){
+            if (cat.getTipos().contains(tipo)){
+                return cat;
+            }
+        }
+        return findCategoria("otros");
     }
 }

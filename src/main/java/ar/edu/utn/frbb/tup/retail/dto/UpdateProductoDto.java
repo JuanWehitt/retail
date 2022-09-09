@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UpdateProductoDto {
     private String nombre;
-    private String categoria;
+    //private String categoria;
     private String marca;
     private String modelo;
     private String descripcion;
@@ -36,13 +36,13 @@ public class UpdateProductoDto {
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+//    public String getCategoria() {
+//        return categoria;
+//    }
+//
+//    public void setCategoria(String categoria) {
+//        this.categoria = categoria;
+//    }
 
     public String getMarca() {
         return marca;

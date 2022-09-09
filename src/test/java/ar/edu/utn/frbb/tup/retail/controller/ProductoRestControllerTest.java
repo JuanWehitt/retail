@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(properties = "spring.main.allow-bean-definition-overriding=true")
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ProductoControllerTest {
+public class ProductoRestControllerTest {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
@@ -25,7 +25,7 @@ public class ProductoControllerTest {
 
     @Test
     public void crearProductoTest() throws Exception {
-        AltaProductoDto productoDto = new AltaProductoDto("plancha","123");
+        AltaProductoDto productoDto = new AltaProductoDto("plancha","123","Electrodomesticos");
         productoMvc.perform(MockMvcRequestBuilders.post("/producto")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(productoDto))

@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 public class ConfiguracionTest extends TestCase {
 
     public void testSetOpcionElegida_ok() {
-        Configuracion conf = new Configuracion("Memoria");
+        Configuracion conf = new Configuracion("Memoria","PC");
         conf.agregarOpcion("8GB");
         conf.agregarOpcion("16GB");
         conf.setOpcionElegida("8GB");

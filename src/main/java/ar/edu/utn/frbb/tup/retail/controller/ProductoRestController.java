@@ -4,6 +4,7 @@ import ar.edu.utn.frbb.tup.retail.business.CategoriaBusiness;
 import ar.edu.utn.frbb.tup.retail.business.ProductoBusiness;
 import ar.edu.utn.frbb.tup.retail.dto.AltaCategoriaDto;
 import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
+import ar.edu.utn.frbb.tup.retail.dto.UpdateEspecificacionesProductoDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateProductoDto;
 import ar.edu.utn.frbb.tup.retail.exception.ExceptionBean;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class ProductoController {
+public class ProductoRestController {
 
     @Autowired
     ProductoBusiness productoBusiness;
@@ -64,8 +65,16 @@ public class ProductoController {
         }else{
             throw new ExceptionBean("Uno de los productos no se encontró, revise los codigos "+cod_producto1+" y "+cod_producto2);
         }
-
     }
+    @PutMapping("/producto/especificaciones/{codigo}")
+    public Producto agregarEspecificacion(@PathVariable String codigo, @RequestBody UpdateEspecificacionesProductoDto dto){
+        Producto productoActualizado = productoBusiness.updateEspecificacionesProducto(dto,codigo);
+        if (productoActualizado==null){
+            throw new ExceptionBean("Producto "+codigo+ " no encontrado");
+        }
+        return productoActualizado;
+    }
+
     @GetMapping("/producto/por_tipo_marca_categoria")
     public List<Producto> listarPorTipoMarcaCategoria(@RequestParam("tipo_producto") String tipo,
                                                        @RequestParam("marca") String marca,
@@ -93,10 +102,10 @@ public class ProductoController {
 
     @PutMapping( value = "/producto/{codigo}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Producto updateProducto(@PathVariable String codigo, @RequestBody UpdateProductoDto dto){
-        if(categoriaBusiness.getCategoria(dto.getCategoria()) == null){
-            AltaCategoriaDto dtoAltaCategoria = new AltaCategoriaDto(dto.getCategoria());
-            categoriaBusiness.altaCategoria(dtoAltaCategoria);
-        }
+//        if(categoriaBusiness.getCategoria(dto.getCategoria()) == null){
+//            AltaCategoriaDto dtoAltaCategoria = new AltaCategoriaDto(dto.getCategoria());
+//            categoriaBusiness.altaCategoria(dtoAltaCategoria);
+//        }
         Producto productoActualizado = productoBusiness.updateProducto(dto,codigo);
         if (productoActualizado==null){
             throw new ExceptionBean("Producto "+codigo+ " no encontrado");

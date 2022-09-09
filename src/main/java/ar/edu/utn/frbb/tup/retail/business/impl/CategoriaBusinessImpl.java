@@ -9,6 +9,7 @@ import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,6 +26,7 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
             categoria = new Categoria();
             categoria.setNombre(dto.getNombre());
             categoria.setDescripcion(dto.getDescripcion());
+            categoria.setTipos(dto.getTipos());
             categoriaDao.save(categoria);
         }else{
             categoria = categoriaDao.findCategoria(dto.getNombre());
@@ -55,4 +57,6 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
     public boolean deleteCategoria(String nombre) throws ExceptionCategoriaRelacionada {
         return categoriaDao.deleteCategoria(categoriaDao.findCategoria(nombre));
     }
+
+
 }

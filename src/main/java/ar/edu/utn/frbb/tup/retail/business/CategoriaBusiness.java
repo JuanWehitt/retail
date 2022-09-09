@@ -16,4 +16,6 @@ public interface CategoriaBusiness {
     Categoria updateCategoria(UpdateCategoriaDto dto, String nombre);
 
     boolean deleteCategoria(String nombre);
+
+
 }

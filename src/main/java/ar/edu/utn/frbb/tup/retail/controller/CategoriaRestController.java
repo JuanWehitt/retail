@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-public class CategoriaController {
+public class CategoriaRestController {
 
     @Autowired
     CategoriaBusiness categoriaBusiness;
@@ -28,6 +28,62 @@ public class CategoriaController {
     public Categoria crearCategoria(@RequestBody AltaCategoriaDto dto) {
         return categoriaBusiness.altaCategoria(dto);
     }
+
+//    @PostMapping(value = "/setear_categorias")
+//    public List<Categoria> crearCategorias(){
+//        AltaCategoriaDto dto = new AltaCategoriaDto();
+//        ArrayList<String> tipos;
+//        dto.setNombre("TV,Audio y Video");
+//        dto.setDescripcion("Categoria que almacena productos multimedia");
+//        String cadena = "televisores,cámaras de video,cámaras fotográficas,home theaters,minicomponentes,parlantes";
+//        tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
+//        dto.setTipos(tipos);
+//        System.out.println(dto.getTipos());
+//        categoriaBusiness.altaCategoria(dto);
+//
+//        dto.setNombre("Electrodomésticos y climatización");
+//        dto.setDescripcion("Categoria que almacena productos electrodomesticos");
+//        cadena = "licuadoras,cafeteras,lavarropas,pavas" +
+//                "eléctricas,cocinas,termotanques,aires" +
+//                "acondicionados,ventiladores,calefactores";
+//        tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
+//        dto.setTipos(tipos);
+//        categoriaBusiness.altaCategoria(dto);
+//        //
+//        dto.setNombre("Hogar y muebles");
+//        dto.setDescripcion("Categoria que almacena productos electrodomesticos");
+//        cadena = "colchones,almohadas,sillas,mesas," +
+//                "máquinas de cortar césped";
+//        tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
+//        dto.setTipos(tipos);
+//        categoriaBusiness.altaCategoria(dto);
+//        //
+//
+//        dto.setNombre("Informática y electrónica");
+//        dto.setDescripcion("Categoria que almacena productos de informatica y electroncia");
+//        cadena = "notebooks,PC’s,monitores,impresoras," +
+//                "accesorios pc’s y notebooks,celulares," +
+//                "tablets,consolas de juegos";
+//        tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
+//        dto.setTipos(tipos);
+//        categoriaBusiness.altaCategoria(dto);
+//        //
+//        dto.setNombre("Salud y Aire libre ");
+//        dto.setDescripcion("Categoria que almacena productos de Salud y Aire libre ");
+//        cadena = "bicicletas,bicicletas fijas,caminadores," +
+//                "carpas,conservadoras,mochilas";
+//        tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
+//        dto.setTipos(tipos);
+//        categoriaBusiness.altaCategoria(dto);
+//        //
+//        dto.setNombre("Otros");
+//        dto.setDescripcion("Categoria que almacena productos sin categoria");
+//        cadena = "";
+//        tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
+//        dto.setTipos(tipos);
+//        categoriaBusiness.altaCategoria(dto);
+//        return categoriaBusiness.getCategorias();
+//    }
 
     @GetMapping("/categorias")
     public List<Categoria> getCategorias() {

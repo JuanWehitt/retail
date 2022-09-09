@@ -9,6 +9,7 @@ public class Categoria {
     private String nombre;
     private String descripcion;
     private ArrayList<Producto> productos;
+    private ArrayList<String> tipos;
 
     public ArrayList<Producto> getProductos() {
         return productos;
@@ -16,9 +17,11 @@ public class Categoria {
 
     public Categoria(String nombre) {
         this.nombre = nombre;
+        this.tipos = new ArrayList<>();
     }
 
     public Categoria() {
+        this.tipos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -80,4 +83,11 @@ public class Categoria {
 
     }
 
+    public void setTipos(ArrayList<String> tipos) {
+        this.tipos.addAll(tipos);
+    }
+
+    public ArrayList<String> getTipos() {
+        return tipos;
+    }
 }

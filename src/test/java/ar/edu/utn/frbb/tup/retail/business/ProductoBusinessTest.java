@@ -34,7 +34,7 @@ public class ProductoBusinessTest {
         Categoria categoria = new Categoria();
         categoria.setNombre("testCategoria");
 
-        AltaProductoDto dto = new AltaProductoDto("testProducto","1234");
+        AltaProductoDto dto = new AltaProductoDto("testProducto","1234","parlantes");
         Mockito.when(daoMock.save(Mockito.<Producto>any())).thenReturn(new Producto());
         Mockito.when(categoriaDaoMock.findCategoria("audio")).thenReturn(categoria);
 

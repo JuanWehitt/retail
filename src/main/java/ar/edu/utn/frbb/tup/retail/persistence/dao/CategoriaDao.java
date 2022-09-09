@@ -14,4 +14,6 @@ public interface CategoriaDao {
     Categoria findCategoria(String nombre);
 
     List<Categoria> findAll();
+
+    Categoria findCategoriaPorTipo(String tipo);
 }
