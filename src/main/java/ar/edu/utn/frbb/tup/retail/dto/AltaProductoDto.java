@@ -6,11 +6,11 @@ public class AltaProductoDto {
     private String codigo;
     private String tipo;
 
-    public AltaProductoDto(String nombre, String codigo, String tipo) {
+    public AltaProductoDto(String nombre, String tipo) {
         this.tipo = tipo;
         this.nombre = nombre;
-        this.codigo = codigo;
-        System.out.println("se creo AltaProductoDto con nombre "+nombre+", codigo "+codigo+" y tipo "+tipo );
+        //this.codigo = codigo;
+        System.out.println("se creo AltaProductoDto con nombre "+nombre+" y tipo "+tipo );
     }
 
     public AltaProductoDto() {

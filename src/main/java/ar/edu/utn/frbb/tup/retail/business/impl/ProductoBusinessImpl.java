@@ -28,7 +28,7 @@ public class ProductoBusinessImpl implements ProductoBusiness {
     public Producto altaProducto(AltaProductoDto dto) {
         Producto producto = new Producto();
         producto.setNombre(dto.getNombre());
-        producto.setCodigo(dto.getCodigo());
+        //producto.setCodigo(dto.getCodigo());
         producto.setTipo(dto.getTipo());
         Categoria categoria = categoriaDao.findCategoriaPorTipo(dto.getTipo());
         producto.setCategoria(categoria.getNombre());

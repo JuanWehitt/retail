@@ -6,9 +6,7 @@ import ar.edu.utn.frbb.tup.retail.persistence.dao.ProductoDao;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class InMemoryProductoDao implements ProductoDao {
@@ -16,9 +14,15 @@ public class InMemoryProductoDao implements ProductoDao {
 
     @Override
     public Producto save(Producto producto) {
+        String codigo = generarCodigo();
+        producto.setCodigo(codigo);
+        System.out.println("Se almaceno en memoria un producto "+producto.getCodigo());
         productosList.add(producto);
-        System.out.println("se almaceno en memoria un producto "+producto.getCodigo());
         return producto;
+    }
+
+    private String generarCodigo() {
+        return UUID.randomUUID().toString().toUpperCase().substring(0,6);
     }
 
     @Override
