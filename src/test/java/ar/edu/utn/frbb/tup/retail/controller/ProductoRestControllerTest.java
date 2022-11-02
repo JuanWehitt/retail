@@ -25,7 +25,7 @@ public class ProductoRestControllerTest {
 
     @Test
     public void crearProductoTest() throws Exception {
-        AltaProductoDto productoDto = new AltaProductoDto("plancha","123","Electrodomesticos");
+        AltaProductoDto productoDto = new AltaProductoDto("plancha","Electrodomesticos");
         productoMvc.perform(MockMvcRequestBuilders.post("/producto")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(productoDto))

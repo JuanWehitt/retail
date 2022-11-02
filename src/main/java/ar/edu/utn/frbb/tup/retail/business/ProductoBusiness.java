@@ -1,7 +1,7 @@
 package ar.edu.utn.frbb.tup.retail.business;
 
 import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
-import ar.edu.utn.frbb.tup.retail.dto.UpdateEspecificacionesProductoDto;
+import ar.edu.utn.frbb.tup.retail.dto.UpdateEspecificacionProductoDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateProductoDto;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 
@@ -20,5 +20,7 @@ public interface ProductoBusiness {
 
     void relacionarProductos(String cod_producto1, String cod_producto2);
 
-    Producto updateEspecificacionesProducto(UpdateEspecificacionesProductoDto dto, String codigo);
+    Producto updateEspecificacionProducto(String codigo, UpdateEspecificacionProductoDto dto);
+
+    Producto deleteEspecificacionProducto(String codigo, UpdateEspecificacionProductoDto dto);
 }

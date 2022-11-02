@@ -27,7 +27,21 @@ public class InMemoryProductoDao implements ProductoDao {
 
     @Override
     public Producto updateProducto(Producto producto) {
-        return null;
+        Producto p = this.findProducto(producto.getCodigo());
+        if (p!=null) {
+            p.setCategoria(producto.getCategoria());
+            p.setTipo(producto.getTipo());
+            p.setPrecioDeLista(producto.getPrecioDeLista());
+            p.setDescripcion(producto.getDescripcion());
+            p.setNombre(producto.getNombre());
+            p.setEspecificaciones(producto.getEspecificaciones());
+            p.setMarca(producto.getMarca());
+            p.setOn_line(producto.isOn_line());
+            p.setPersonalizable(producto.isPersonalizable());
+            p.setPrecioOnLine(producto.getPrecioOnline());
+            p.setModelo(producto.getModelo());
+        }
+        return p;
     }
 
     @Override

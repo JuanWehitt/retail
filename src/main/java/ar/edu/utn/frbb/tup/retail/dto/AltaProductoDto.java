@@ -3,14 +3,13 @@ package ar.edu.utn.frbb.tup.retail.dto;
 public class AltaProductoDto {
 
     private String nombre;
-    private String codigo;
     private String tipo;
 
     public AltaProductoDto(String nombre, String tipo) {
         this.tipo = tipo;
         this.nombre = nombre;
         //this.codigo = codigo;
-        System.out.println("se creo AltaProductoDto con nombre "+nombre+" y tipo "+tipo );
+        //System.out.println("se creo AltaProductoDto con nombre "+nombre+" y tipo "+tipo );
     }
 
     public AltaProductoDto() {
@@ -31,11 +30,4 @@ public class AltaProductoDto {
         this.nombre = nombre;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
 }

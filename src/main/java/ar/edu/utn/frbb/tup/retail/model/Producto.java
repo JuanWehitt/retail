@@ -1,50 +1,40 @@
 package ar.edu.utn.frbb.tup.retail.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Producto implements Configurable, VendibleOnLine {
+public class Producto implements VendibleOnLine {
     private String codigo;
     private String nombre;
     private String categoria;
     private String marca;
     private String modelo;
     private String descripcion;
-    private List<String> especificaciones;
+    HashMap< String, List<String> > especificaciones = new HashMap < String, List<String> > ();
     private double precioDeLista;
     private double precioContado;
     private boolean on_line = false;
     private double precioOnline;
     private static double descuentoOnline;
-    private List<String> relacionados;
+    private List<String> relacionados = new ArrayList<>();
     private String tipo;
-
-    private List<Configuracion> configuraciones;
+    private boolean personalizable = false;
     private static double descuentoContado = 0.15;
 
-    public Producto (Producto aCopiar){
-        this.codigo = aCopiar.getCodigo();
-        this.nombre = aCopiar.getNombre();
-        this.categoria = aCopiar.getCategoria();
-        this.marca = aCopiar.getMarca();
-        this.modelo = aCopiar.getModelo();
-        this.descripcion = aCopiar.getDescripcion();
-        this.especificaciones = aCopiar.getEspecificaciones().subList(0,aCopiar.getEspecificaciones().size()-1);
-        this.precioDeLista = aCopiar.getPrecioDeLista();
-        this.precioContado = aCopiar.getPrecioContado();
-        this.on_line = aCopiar.isOn_line();
-        this.precioOnline = aCopiar.getPrecioOnline();
-        this.relacionados = aCopiar.getRelacionados().subList(0,aCopiar.getRelacionados().size()-1);
-        this.configuraciones = aCopiar.getConfiguraciones().subList(0,aCopiar.getConfiguraciones().size()-1);
-        this.tipo = aCopiar.getTipo();
-    }
+    public Producto(){}
 
-    public Producto(){
-
-    }
     public Producto(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
+    }
+
+    public boolean isPersonalizable() {
+        return personalizable;
+    }
+
+    public void setPersonalizable(boolean personalizable) {
+        this.personalizable = personalizable;
     }
 
     public String getTipo() {
@@ -158,43 +148,12 @@ public class Producto implements Configurable, VendibleOnLine {
         return this.precioDeLista - precioDeLista * descuentoOnline;
     }
 
-    public List<Configuracion> getConfiguraciones() {
-        return configuraciones;
-    }
-
-    public List<String> getEspecificaciones() {
+    public HashMap< String, List<String> > getEspecificaciones() {
         return especificaciones;
     }
 
-    public void setEspecificaciones(List<String> especificaciones) {
-        if (this.especificaciones==null ){
-            this.especificaciones = new ArrayList<>();
-        }
+    public void setEspecificaciones(HashMap< String, List<String> > especificaciones) {
         this.especificaciones = especificaciones;
-    }
-
-    public void agregarConfiguracion(Configuracion conf){
-        if(configuraciones==null) {
-            configuraciones = new ArrayList<>();
-        }
-        this.configuraciones.add(conf);
-        if (especificaciones == null) {
-            this.especificaciones = new ArrayList<>();
-        }
-        this.especificaciones.add(conf.getNombre() + ":" + conf.getOpcionElegida());
-
-    }
-
-    @Override
-    public void crearListaDeOpciones(Configuracion configuracion, List<String> opciones) {
-        for (String opcion: opciones) {
-            configuracion.agregarOpcion(opcion);
-        }
-    }
-
-    @Override
-    public void setearOpcionElegida(Configuracion configuracion, String opcion) {
-        configuracion.setOpcionElegida(opcion);
     }
 
     @Override
@@ -211,5 +170,21 @@ public class Producto implements Configurable, VendibleOnLine {
         }
     }
 
+    public Producto (Producto aCopiar){
+        this.codigo = aCopiar.getCodigo();
+        this.nombre = aCopiar.getNombre();
+        this.categoria = aCopiar.getCategoria();
+        this.marca = aCopiar.getMarca();
+        this.modelo = aCopiar.getModelo();
+        this.descripcion = aCopiar.getDescripcion();
+        this.precioDeLista = aCopiar.getPrecioDeLista();
+        this.precioContado = aCopiar.getPrecioContado();
+        this.on_line = aCopiar.isOn_line();
+        this.precioOnline = aCopiar.getPrecioOnline();
+        this.relacionados = aCopiar.getRelacionados().subList(0,aCopiar.getRelacionados().size()-1);
+        this.tipo = aCopiar.getTipo();
+        this.personalizable = aCopiar.isPersonalizable();
+
+    }
 
 }

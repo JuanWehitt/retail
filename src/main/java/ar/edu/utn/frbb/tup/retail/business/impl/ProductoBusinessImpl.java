@@ -2,10 +2,9 @@ package ar.edu.utn.frbb.tup.retail.business.impl;
 
 import ar.edu.utn.frbb.tup.retail.business.ProductoBusiness;
 import ar.edu.utn.frbb.tup.retail.dto.AltaProductoDto;
-import ar.edu.utn.frbb.tup.retail.dto.UpdateEspecificacionesProductoDto;
+import ar.edu.utn.frbb.tup.retail.dto.UpdateEspecificacionProductoDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateProductoDto;
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
-import ar.edu.utn.frbb.tup.retail.model.Configuracion;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.CategoriaDao;
 import ar.edu.utn.frbb.tup.retail.persistence.dao.ProductoDao;
@@ -13,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class ProductoBusinessImpl implements ProductoBusiness {
@@ -59,14 +60,11 @@ public class ProductoBusinessImpl implements ProductoBusiness {
                 categoriaNueva.agregarProducto(producto);
                 producto.setCategoria(categoriaNueva.getNombre());
             }
-
-
-            producto.setEspecificaciones(dto.getEspecificaciones());
             producto.setOn_line(dto.isOn_line());
             producto.setPrecioOnLine(dto.getPrecioOnline());
             producto.setTipo(dto.getTipo());
-            dto.getConfiguraciones().forEach(conf -> producto.agregarConfiguracion(new Configuracion(conf,dto.getTipo())));
-            productoDao.updateProducto(producto);
+            Producto productoActualizado = productoDao.updateProducto(producto);
+            return productoActualizado;
         }
         return producto;
     }
@@ -87,7 +85,45 @@ public class ProductoBusinessImpl implements ProductoBusiness {
     }
 
     @Override
-    public Producto updateEspecificacionesProducto(UpdateEspecificacionesProductoDto dto, String codigo) {
+    public Producto updateEspecificacionProducto(String codigo, UpdateEspecificacionProductoDto dto) {
+        Producto producto = productoDao.findProducto(codigo);
+        if(producto!=null){
+            HashMap< String, List<String> > especificaciones = producto.getEspecificaciones();
+            //HashMap< String, List<String> > map = especificaciones.getMap();
+            especificaciones.put(dto.getNombre(),dto.getOpciones());
+            if(dto.getOpciones().size()>1) {
+                producto.setPersonalizable(true);
+            }
+            return(productoDao.updateProducto(producto));
+        }
+        return null;
+    }
+
+    @Override
+    public Producto deleteEspecificacionProducto(String codigo, UpdateEspecificacionProductoDto dto) {
+        Producto producto = productoDao.findProducto(codigo);
+        if(producto!=null) {
+            HashMap< String, List<String> > especificaciones = producto.getEspecificaciones();
+            if (especificaciones.containsKey(dto.getNombre())){
+                //System.out.println("encontro especificaciones "+especificaciones);
+                List<String> opciones = especificaciones.get(dto.getNombre());
+                opciones.remove(dto.getOpciones().get(0));
+                //System.out.println(opciones);
+                if (opciones.size()==0){
+                    especificaciones.remove(dto.getNombre());
+                }
+            }
+            boolean configurable = false;
+            for (Map.Entry< String, List<String> > entry : especificaciones.entrySet()) {
+                if(entry.getValue().size()>1) {
+                    configurable = true;
+                    break;
+                }
+            }
+            producto.setPersonalizable(configurable);
+            return producto;
+        }
+
         return null;
     }
 

@@ -1,23 +1,14 @@
 package ar.edu.utn.frbb.tup.retail.dto;
 
-import ar.edu.utn.frbb.tup.retail.model.Categoria;
-import ar.edu.utn.frbb.tup.retail.model.Configuracion;
-import ar.edu.utn.frbb.tup.retail.model.Producto;
-
-import java.util.List;
-
 public class UpdateProductoDto {
     private String nombre;
     //private String categoria;
     private String marca;
     private String modelo;
     private String descripcion;
-    private List<String> especificaciones;
     private double precioDeLista;
-    private double precioContado;
     private boolean on_line;
     private double precioOnline;
-    private List<String> configuraciones;
     private String tipo;
 
     public String getTipo() {
@@ -35,14 +26,6 @@ public class UpdateProductoDto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-//    public String getCategoria() {
-//        return categoria;
-//    }
-//
-//    public void setCategoria(String categoria) {
-//        this.categoria = categoria;
-//    }
 
     public String getMarca() {
         return marca;
@@ -68,28 +51,12 @@ public class UpdateProductoDto {
         this.descripcion = descripcion;
     }
 
-    public List<String> getEspecificaciones() {
-        return especificaciones;
-    }
-
-    public void setEspecificaciones(List<String> especificaciones) {
-        this.especificaciones = especificaciones;
-    }
-
     public double getPrecioDeLista() {
         return precioDeLista;
     }
 
     public void setPrecioDeLista(double precioDeLista) {
         this.precioDeLista = precioDeLista;
-    }
-
-    public double getPrecioContado() {
-        return precioContado;
-    }
-
-    public void setPrecioContado(double precioContado) {
-        this.precioContado = precioContado;
     }
 
     public boolean isOn_line() {
@@ -108,11 +75,4 @@ public class UpdateProductoDto {
         this.precioOnline = precioOnline;
     }
 
-    public List<String> getConfiguraciones() {
-        return configuraciones;
-    }
-
-    public void setConfiguraciones(List<String> configuraciones) {
-        this.configuraciones = configuraciones;
-    }
 }
