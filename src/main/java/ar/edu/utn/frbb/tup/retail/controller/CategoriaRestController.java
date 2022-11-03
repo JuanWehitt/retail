@@ -10,7 +10,9 @@ import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
 import com.sun.jdi.request.InvalidRequestStateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -25,8 +27,8 @@ public class CategoriaRestController {
     ProductoBusiness productoBusiness;
 
     @PostMapping(value = "/categoria", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Categoria crearCategoria(@RequestBody AltaCategoriaDto dto) {
-        return categoriaBusiness.altaCategoria(dto);
+    public ResponseEntity<Categoria> crearCategoria(@RequestBody AltaCategoriaDto dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(categoriaBusiness.altaCategoria(dto));
     }
 
 //    @PostMapping(value = "/setear_categorias")
@@ -86,36 +88,36 @@ public class CategoriaRestController {
 //    }
 
     @GetMapping("/categorias")
-    public List<Categoria> getCategorias() {
+    public ResponseEntity<List<Categoria>> getCategorias() {
         List<Categoria> categorias = null;
         categorias = categoriaBusiness.getCategorias();
         if (categorias==null){
             throw new ExceptionBean("Lista de categorias no encontrada");
         }
-        return categorias;
+        return ResponseEntity.status(HttpStatus.OK).body(categorias);
     }
 
     @GetMapping("/categoria/{nombre}")
-    public Categoria getCategoria(@PathVariable String nombre){
+    public ResponseEntity<Categoria> getCategoria(@PathVariable String nombre){
         Categoria categoria = categoriaBusiness.getCategoria(nombre);
         if (categoria!=null){
-            return categoria;
+            return ResponseEntity.status(HttpStatus.OK).body(categoria);
         }else{
             throw new ExceptionBean("La categoria no existe");
         }
     }
 
     @PutMapping( value = "/categoria/{nombre}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Categoria updateCategoria(@PathVariable String nombre, @RequestBody UpdateCategoriaDto dto){
+    public ResponseEntity<Categoria> updateCategoria(@PathVariable String nombre, @RequestBody UpdateCategoriaDto dto){
         Categoria categoriaActualizada = categoriaBusiness.updateCategoria(dto,nombre);
         if (categoriaActualizada==null){
             throw new ExceptionBean("Categoria "+nombre+ " no encontrada");
         }
-        return categoriaActualizada;
+        return ResponseEntity.status(HttpStatus.OK).body(categoriaActualizada);
 
     }
     @DeleteMapping("/categoria/{nombre}")
-    public String deleteCategoria(@PathVariable String nombre){
+    public ResponseEntity<String> deleteCategoria(@PathVariable String nombre){
         Categoria categoria;
         categoria = categoriaBusiness.getCategoria(nombre);
 
@@ -124,9 +126,9 @@ public class CategoriaRestController {
         }
         try {
             if (categoriaBusiness.deleteCategoria(nombre)) {
-                return "La categoria se elimino con exito";
+                return ResponseEntity.status(HttpStatus.OK).body("La categoria se elimino con exito");
             }else{
-                return "NO se elimino la categoria por un problema interno";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("NO se elimino la categoria por un problema interno");
             }
         }catch (ExceptionCategoriaRelacionada e){
 
@@ -141,7 +143,7 @@ public class CategoriaRestController {
     }
 
     @GetMapping("/categoria")
-    public ArrayList<Producto> getProductosOrder_price(@RequestParam(required = false, value = "categoria") String categoria,
+    public ResponseEntity<ArrayList<Producto>> getProductosOrder_price(@RequestParam(required = false, value = "categoria") String categoria,
                                                     @RequestParam(required = false, value = "order_price") String order_price,
                                                     @RequestParam(required = false, value = "marca") String marca,
                                                    @RequestParam(required = false, value = "precio_min") String precio_min,
@@ -152,24 +154,24 @@ public class CategoriaRestController {
             Categoria todos = new Categoria();
             categorias.forEach(cat -> cat.getProductos().forEach(p -> todos.agregarProducto(p)));
             if (order_price != null) {
-                return ordenadosPorPrecio(todos, order_price);
+                return ResponseEntity.status(HttpStatus.OK).body(ordenadosPorPrecio(todos, order_price));
             } else if (marca != null) {
-                return filtroPorMarca(todos,marca);
+                return ResponseEntity.status(HttpStatus.OK).body(filtroPorMarca(todos,marca));
             } else {
                 if (precio_min != null && precio_max != null) {
-                    return filtroPorPrecio(todos, Double.parseDouble(precio_min), Double.parseDouble(precio_max));
+                    return ResponseEntity.status(HttpStatus.OK).body(filtroPorPrecio(todos, Double.parseDouble(precio_min), Double.parseDouble(precio_max)));
                 }else{
                     throw new InvalidRequestStateException("Error en los datos de entrada");
                 }
             }
         }else{
             if (order_price != null) {
-                return ordenadosPorPrecio(c, order_price);
+                return ResponseEntity.status(HttpStatus.OK).body(ordenadosPorPrecio(c, order_price));
             } else if (marca != null) {
-                return filtroPorMarca(c, marca);
+                return ResponseEntity.status(HttpStatus.OK).body(filtroPorMarca(c, marca));
             } else {
                 if (precio_min != null && precio_max != null) {
-                    return filtroPorPrecio(c, Double.parseDouble(precio_min), Double.parseDouble(precio_max));
+                    return ResponseEntity.status(HttpStatus.OK).body(filtroPorPrecio(c, Double.parseDouble(precio_min), Double.parseDouble(precio_max)));
                 }
                 throw new InvalidRequestStateException("Error en los datos de entrada");
             }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Consumer;
 
 @Component
@@ -65,7 +66,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
         this.save(categoria_informatica);
         //
         Categoria categoria_salud = new Categoria();
-        categoria_salud.setNombre("Salud y Aire libre ");
+        categoria_salud.setNombre("Salud y Aire libre");
         categoria_salud.setDescripcion("Categoria que almacena productos de Salud y Aire libre ");
         cadena = "bicicletas,bicicletas fijas,caminadores," +
                 "carpas,conservadoras,mochilas";
@@ -109,7 +110,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
         for (Categoria c: categoriasList){
             if(c.getNombre().equalsIgnoreCase(nombre)){
                 encontrada = c;
-                System.out.println("Encontro categoria con "+nombre);
+                System.out.println("Encontro categoria "+nombre);
             }
         }
         return encontrada;
@@ -123,7 +124,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
     @Override
     public Categoria findCategoriaPorTipo(String tipo) {
         for( Categoria cat : categoriasList){
-            if (cat.getTipos().contains(tipo)){
+            if (cat.getTipos().contains(tipo.toLowerCase())){
                 return cat;
             }
         }
