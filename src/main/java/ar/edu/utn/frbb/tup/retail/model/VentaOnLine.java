@@ -10,7 +10,7 @@ public class VentaOnLine implements Venta{
     }
 
     @Override
-    public void crearVenta(Producto p, Configuracion c) {
+    public void crearVenta(Producto p, Configuracion c, String idClient) {
 
     }
 }
