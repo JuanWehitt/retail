@@ -34,7 +34,7 @@ public class ProductoBusinessImpl implements ProductoBusiness {
         Categoria categoria = categoriaDao.findCategoriaPorTipo(dto.getTipo());
         producto.setCategoria(categoria.getNombre());
         categoria.agregarProducto(producto);
-        categoriaDao.save(categoria);
+        categoriaDao.updateCategoria(categoria);
         productoDao.save(producto);
         return producto;
     }

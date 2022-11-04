@@ -8,9 +8,9 @@ public class Producto implements VendibleOnLine {
     private String codigo;
     private String nombre;
     private String categoria;
-    private String marca;
-    private String modelo;
-    private String descripcion;
+    private String marca="";
+    private String modelo="";
+    private String descripcion="";
     HashMap< String, List<String> > especificaciones = new HashMap < String, List<String> > ();
     private double precioDeLista;
     private double precioContado;

@@ -47,10 +47,15 @@ public class CategoriaBusinessImpl implements CategoriaBusiness {
     @Override
     public Categoria updateCategoria(UpdateCategoriaDto dto, String nombre) {
         Categoria categoria = categoriaDao.findCategoria(nombre);
-        categoria.setDescripcion(dto.getDescripcion());
-        categoria.setNombre(dto.getNombre());
-        categoriaDao.updateCategoria(categoria);
-        return categoria;
+        if (categoria!=null) {
+            categoria.setDescripcion(dto.getDescripcion());
+            categoria.setNombre(dto.getNombre());
+            categoria.setTipos(dto.getTipos());
+            categoriaDao.updateCategoria(categoria);
+            return categoria;
+        }
+        return null;
+
     }
 
     @Override

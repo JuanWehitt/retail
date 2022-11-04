@@ -28,7 +28,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
 
         //AltaCategoriaDto dto = new AltaCategoriaDto();
         ArrayList<String> tipos;
-        categoria_tv.setNombre("TV,Audio y Video");
+        categoria_tv.setNombre("TV, Audio y Video");
         categoria_tv.setDescripcion("Categoria que almacena productos multimedia");
         String cadena = "televisores,cámaras de video,cámaras fotográficas,home theaters,minicomponentes,parlantes";
         tipos =  new ArrayList<>(Arrays.asList(cadena.split(",")));
@@ -110,7 +110,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
         for (Categoria c: categoriasList){
             if(c.getNombre().equalsIgnoreCase(nombre)){
                 encontrada = c;
-                System.out.println("Encontro categoria "+nombre);
+                System.out.println("Encontro categoria "+c.getNombre());
             }
         }
         return encontrada;
@@ -118,6 +118,7 @@ public class InMemoryCategoriaDao implements CategoriaDao {
 
     @Override
     public List<Categoria> findAll() {
+        //System.out.println("encontro "+categoriasList.size()+" categorias");
         return categoriasList;
     }
 

@@ -18,10 +18,12 @@ public class Categoria {
     public Categoria(String nombre) {
         this.nombre = nombre;
         this.tipos = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public Categoria() {
         this.tipos = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public String getNombre() {
