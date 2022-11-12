@@ -3,7 +3,10 @@ package ar.edu.utn.frbb.tup.retail.dto;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class AltaCategoriaDto {
+
+
     private String nombre;
     private String descripcion;
     private ArrayList<String> tipos;
