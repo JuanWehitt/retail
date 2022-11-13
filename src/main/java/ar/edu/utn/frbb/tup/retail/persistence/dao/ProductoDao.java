@@ -12,7 +12,7 @@ public interface ProductoDao {
 
     boolean deleteProducto(Producto producto);
 
-    Producto findProducto(String cuit);
+    Producto findProducto(String codigo);
 
     ArrayList<Producto> findAll();
 

@@ -18,7 +18,7 @@ public interface ProductoBusiness {
 
     boolean deleteProducto(Producto producto);
 
-    void relacionarProductos(String cod_producto1, String cod_producto2);
+    boolean relacionarProductos(String cod_producto1, String cod_producto2);
 
     Producto updateEspecificacionProducto(String codigo, UpdateEspecificacionProductoDto dto);
 

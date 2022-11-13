@@ -58,6 +58,8 @@ public class ProductoBusinessImpl implements ProductoBusiness {
                 //asociar categoria
                 Categoria categoriaNueva = categoriaDao.findCategoriaPorTipo(dto.getTipo());
                 categoriaNueva.agregarProducto(producto);
+                Categoria categoriaAnterior = categoriaDao.findCategoriaPorTipo(producto.getTipo());
+                categoriaAnterior.eliminarProducto(producto);
                 producto.setCategoria(categoriaNueva.getNombre());
             }
             producto.setOn_line(dto.isOn_line());
@@ -80,8 +82,8 @@ public class ProductoBusinessImpl implements ProductoBusiness {
     }
 
     @Override
-    public void relacionarProductos(String cod_producto1, String cod_producto2) {
-        productoDao.relationProduct(cod_producto1, cod_producto2);
+    public boolean relacionarProductos(String cod_producto1, String cod_producto2) {
+        return productoDao.relationProduct(cod_producto1, cod_producto2);
     }
 
     @Override

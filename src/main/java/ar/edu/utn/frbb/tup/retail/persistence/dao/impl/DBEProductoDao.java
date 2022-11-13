@@ -24,7 +24,7 @@ public class DBEProductoDao implements ProductoDao{
     }
 
 
-    public Producto findProducto(String cuit) {
+    public Producto findProducto(String codigo) {
         return null;
     }
 
