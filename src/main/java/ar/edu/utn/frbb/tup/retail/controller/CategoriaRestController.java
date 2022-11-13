@@ -1,14 +1,12 @@
 package ar.edu.utn.frbb.tup.retail.controller;
 
 import ar.edu.utn.frbb.tup.retail.business.CategoriaBusiness;
-import ar.edu.utn.frbb.tup.retail.business.ProductoBusiness;
 import ar.edu.utn.frbb.tup.retail.dto.AltaCategoriaDto;
 import ar.edu.utn.frbb.tup.retail.dto.UpdateCategoriaDto;
 import ar.edu.utn.frbb.tup.retail.exception.ExceptionBean;
 import ar.edu.utn.frbb.tup.retail.exception.ExceptionCategoriaRelacionada;
 import ar.edu.utn.frbb.tup.retail.model.Categoria;
 import ar.edu.utn.frbb.tup.retail.model.Producto;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sun.jdi.request.InvalidRequestStateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +21,6 @@ public class CategoriaRestController {
 
     @Autowired
     CategoriaBusiness categoriaBusiness;
-
-    @Autowired
-    ProductoBusiness productoBusiness;
 
     @PostMapping(value = "/categoria", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Categoria> crearCategoria(@RequestBody AltaCategoriaDto dto) {
@@ -85,9 +80,10 @@ public class CategoriaRestController {
     }
 
     @GetMapping("/categoria")
-    public ResponseEntity<ArrayList<Producto>> getProductosOrder_price(@RequestParam(required = false, value = "categoria") String categoria,
-                                                    @RequestParam(required = false, value = "order_price") String order_price,
-                                                    @RequestParam(required = false, value = "marca") String marca,
+    public ResponseEntity<ArrayList<Producto>> getProductos_orderPrice_marca_precioMaxMin(
+                                                   @RequestParam(required = false, value = "categoria") String categoria,
+                                                   @RequestParam(required = false, value = "order_price") String order_price,
+                                                   @RequestParam(required = false, value = "marca") String marca,
                                                    @RequestParam(required = false, value = "precio_min") String precio_min,
                                                    @RequestParam(required = false, value = "precio_max") String precio_max) {
         Categoria c = categoriaBusiness.getCategoria(categoria);
