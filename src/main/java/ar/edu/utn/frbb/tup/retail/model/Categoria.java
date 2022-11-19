@@ -1,9 +1,6 @@
 package ar.edu.utn.frbb.tup.retail.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class Categoria {
     private String nombre;
@@ -54,22 +51,6 @@ public class Categoria {
             productos.remove(p);
         }
     }
-
-    private boolean ordenada(List<Producto> p){
-        boolean or = true;
-        int i = 0;
-        while (i<p.size()-1 && or){
-            if (p.get(i).getPrecioDeLista()<=p.get(i+1).getPrecioDeLista()){
-                or = true;
-            }else{
-                or = false;
-            }
-            i++;
-        }
-        return or;
-    }
-
-
 
     public boolean isInCategoria(String codigo){
         if (productos==null){
