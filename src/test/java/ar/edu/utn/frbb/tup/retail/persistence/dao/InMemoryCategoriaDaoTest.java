@@ -22,7 +22,7 @@ public class InMemoryCategoriaDaoTest {
     public void test_saveOk(){
         Categoria categoria = new Categoria("Electrodomesticos");
         inMemoryCategoriaDao.save(categoria);
-        assertEquals(1,inMemoryCategoriaDao.findAll().size());
+        assertEquals(7,inMemoryCategoriaDao.findAll().size());
     }
 
     @Test
