@@ -50,6 +50,15 @@ public class ProductoRestController {
         return ResponseEntity.status(HttpStatus.OK).body(producto);
     }
 
+    @PutMapping( value = "/producto/{codigo}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Producto> updateProducto(@PathVariable String codigo, @RequestBody UpdateProductoDto dto){
+        Producto productoActualizado = productoBusiness.updateProducto(dto,codigo);
+        if (productoActualizado==null){
+            throw new ExceptionBean("Producto "+codigo+ " no encontrado");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(productoActualizado);
+    }
+
     @PutMapping("/producto/relacionar")
     public ResponseEntity<List<Producto>> relacionarProductos(@RequestParam(value = "cod_producto1", required = true) String cod_producto1,
                                               @RequestParam(value = "cod_producto2", required = true) String cod_producto2){
@@ -109,14 +118,7 @@ public class ProductoRestController {
         }
     }
 
-    @PutMapping( value = "/producto/{codigo}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Producto> updateProducto(@PathVariable String codigo, @RequestBody UpdateProductoDto dto){
-        Producto productoActualizado = productoBusiness.updateProducto(dto,codigo);
-        if (productoActualizado==null){
-            throw new ExceptionBean("Producto "+codigo+ " no encontrado");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(productoActualizado);
-    }
+
 
     @DeleteMapping("/producto/{codigo}")
     public ResponseEntity<String> deleteProducto(@PathVariable String codigo){
